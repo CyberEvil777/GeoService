@@ -4,8 +4,17 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+django = "*"
+python-decouple = "*"
+psycopg2-binary = "*"
+djangorestframework = "*"
+django-filter = "*"
+dadata = "*"
 
 [dev-packages]
+isort = "*"
+black = "*"
+flake8 = "*"
 
 [requires]
 python_version = "3.8"
