@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.gis",
     "rest_framework",
     "django_filters",
+    "drf_yasg",
     "geoservice.core",
     "geoservice.apps.city",
 ]
@@ -53,6 +54,10 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler'
+}
 
 ROOT_URLCONF = "geoservice.urls"
 

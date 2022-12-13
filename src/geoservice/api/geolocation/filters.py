@@ -1,9 +1,9 @@
 import django_filters
 from django.contrib.gis.geos import Point
 from django.contrib.gis.measure import D
-
 from geoservice.apps.city.models import City
 from geoservice.core.dadata import DadataAPI
+from geoservice.core.exception import NotFoundCityException
 
 
 class GeolocationFilter(django_filters.FilterSet):
@@ -20,8 +20,8 @@ class GeolocationFilter(django_filters.FilterSet):
             qs = City.objects.filter(
                 lоcation__distance_lte=(
                     Point(
-                        float(self.location.get("geo_lon")),
-                        float(self.location.get("geo_lat")),
+                        float(self.location.get("geo_lon") or 0.0),
+                        float(self.location.get("geo_lat") or 0.0),
                     ),
                     D(km=10),
                 )
@@ -32,12 +32,14 @@ class GeolocationFilter(django_filters.FilterSet):
         """Фильтр городов, которые находятся в диаметре,
         который мы передаем в запросе.
         """
+        if not getattr(self, "location"):
+            raise NotFoundCityException
         if request:
             qs = City.objects.filter(
                 lоcation__distance_lte=(
                     Point(
-                        float(self.location.get("geo_lon")),
-                        float(self.location.get("geo_lat")),
+                        float(self.location.get("geo_lon") or 0.0),
+                        float(self.location.get("geo_lat") or 0.0),
                     ),
                     D(km=self.data.get("diametr")),
                 )

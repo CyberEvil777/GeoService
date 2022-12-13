@@ -1,6 +1,5 @@
-from rest_framework import serializers
-
 from geoservice.apps.city.models import City
+from rest_framework import serializers
 
 
 class GeolocationSerializer(serializers.ModelSerializer):

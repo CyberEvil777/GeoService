@@ -10,6 +10,7 @@ psycopg2-binary = "*"
 djangorestframework = "*"
 django-filter = "*"
 dadata = "*"
+drf-yasg = "*"
 
 [dev-packages]
 isort = "*"
