@@ -1,0 +1,76 @@
+version: '3'
+
+services:
+
+  postgres:
+    image: postgis/postgis:14-3.3-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - postgres_backups:/backups
+    env_file:
+      - ./docker-compose.env
+    expose:
+      - "5432"
+
+  web:
+       build: .
+       command: python manage.py runserver localhost:8000
+       ports:
+           - 8000:8000
+
+#  telegram_bot_pulling:
+#    build:
+#      context: ../
+#      dockerfile: ./deploy/Dockerfile
+#    env_file:
+#      - ./docker-compose.env
+#    depends_on:
+#      - postgres
+#      - redis
+#      - wsgi
+#    volumes:
+#      - app_static:/project/src/static
+#      - app_media:/project/src/media
+#    command: python manage.py bot_pooling
+#
+#  telegram_bot_ads_pulling:
+#    build:
+#      context: ../
+#      dockerfile: ./deploy/Dockerfile
+#    env_file:
+#      - ./docker-compose.env
+#    depends_on:
+#      - postgres
+#      - redis
+#      - wsgi
+#    volumes:
+#      - app_static:/project/src/static
+#      - app_media:/project/src/media
+#    command: python manage.py bot_pooling_ads
+
+#  nginx:
+#    build:
+#      context: ../
+#      dockerfile: ./deploy/nginx/Dockerfile
+#    expose:
+#      - "80"
+#    ports:
+#      - "80:80"
+#    volumes:
+#      - app_static:/application/static
+#      - app_media:/application/media
+#      - app_logs:/application/logs
+#    depends_on:
+#      - wsgi
+#    environment:
+#      - STATIC_PATH=/application/static
+#      - MEDIA_PATH=/application/media
+#      - MANIFEST_PATH=/application/static/manifest
+#      - APP_PROXY_LINK=wsgi
+#      - APP_PROXY_PORT=80
+volumes:
+#  app_static:
+#  app_logs:
+#  app_media:
+  postgres_data:
+  postgres_backups:
