@@ -11,8 +11,11 @@
 # GeoService
 
 ## Backend
-### Разработка
-
+### Чтобы поднять в docker-compose
+```powershell
+/deploy$ sudo docker-compose up --build
+```
+### Чтобы поднять ручками в консоли 
 GeoService
 
 Чтобы запустить проект настройте PostGis
