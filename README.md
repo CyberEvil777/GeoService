@@ -38,3 +38,5 @@ CREATE EXTENSION postgis_topology;
 
 http://127.0.0.1:8000/api/geolocation/?address=хабаровск+дикапольцева+12&diametr=1000
 
+Так же можно отправить запрос на Swagger
+
