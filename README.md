@@ -16,7 +16,6 @@
 /deploy$ sudo docker-compose up --build
 ```
 ### Чтобы поднять ручками в консоли 
-GeoService
 
 Чтобы запустить проект настройте PostGis
 
