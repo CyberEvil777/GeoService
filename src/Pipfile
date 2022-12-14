@@ -11,6 +11,7 @@ djangorestframework = "*"
 django-filter = "*"
 dadata = "*"
 drf-yasg = "*"
+gunicorn = "*"
 
 [dev-packages]
 isort = "*"
